@@ -11,13 +11,12 @@ import { choiceSortAscending, choiceSortDescending, bubleSortAscending, bubleSor
 export const SortingPage: React.FC = () => {
   const [choiceSort, setChoiceSort] = useState(true)
   const [steps, setSteps] = useState<[number[], number, number, number][]>();
-  const [arr, setArr] = useState<number[]>();
+  const [arr, setArr] = useState<number[]>([]);
   const [index, setIndex] = useState<number>(0);
   const [isLoaderAsc, setIsLoaderAsc] = useState(false);
   const [isLoaderDesc, setIsLoaderDesc] = useState(false);
   const [isButtonPressed, setIsButtonPressed] = useState(false);
   const [flag, setFlag] = useState(false);
-
   const randomArr = () => {
     const arrLength = Math.floor(Math.random() * 15) + 3;
     const randomArray = Array.from({ length: arrLength }, () => Math.floor(Math.random() * 101));
@@ -65,7 +64,7 @@ export const SortingPage: React.FC = () => {
                 choiceSort ? setSteps(choiceSortAscending(arr)) : startBubleSortAscAlgoritm(arr)
                 setIsLoaderAsc(true);
                 setIsButtonPressed(true);
-                setArr(undefined)
+                setArr([])
               }
             }} />
             <Button sorting={Direction.Descending} text={"По убыванию"} isLoader={isLoaderDesc ? true : false} onClick={() => {
@@ -73,7 +72,7 @@ export const SortingPage: React.FC = () => {
                 choiceSort ? setSteps(choiceSortDescending(arr)) : startBubleSortDescAlgoritm(arr)
                 setIsLoaderDesc(true);
                 setIsButtonPressed(true);
-                setArr(undefined)
+                setArr([])
               }
             }} />
           </div>

@@ -24,15 +24,16 @@ export const StringComponent: React.FC = () => {
       setIsLoader(false)
     }
 
-    return () => { clearInterval(interval);}
+    return () => { clearInterval(interval); }
 
   }, [isButtonPressed, string, index])
 
   const handleClick = () => {
+    console.log(algoritm(string))
     algoritm(string);
     setIsButtonPressed(true);
     setIsLoader(true);
-   }
+  }
 
   return (
     <SolutionLayout title="Строка">
@@ -40,7 +41,7 @@ export const StringComponent: React.FC = () => {
         <Input maxLength={11} type={"text"} isLimitText={true} onChange={(evt: any) =>
           setString(evt.target.value)
         } />
-        < Button text={'Развернуть'} onClick={handleClick}  isLoader={isLoader ? true : false}/>
+        < Button text={'Развернуть'} onClick={handleClick} isLoader={isLoader ? true : false} disabled={string === '' ? true : false} />
       </div>
       <div className={styles.letterContainer}>
         {isButtonPressed && < CircleComponent data={algoritm(string)[index]} index={index} />}
