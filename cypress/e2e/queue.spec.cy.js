@@ -1,6 +1,8 @@
+import { circle } from "./constants";
+
 describe("страница с очередью работает корректно", function () {
   beforeEach(function () {
-    cy.visit("http://localhost:3000/queue");
+    cy.visit("/queue");
   });
   it("копка добавления недоступна при пустом инпуте", function () {
     if (cy.get("input").and("have.value", "")) {
@@ -14,7 +16,7 @@ describe("страница с очередью работает корректн
     cy.get("input").type("19");
     cy.get("button").contains("Добавить").click();
 
-    cy.get("[class*=circle_content]").first().as("firstElement");
+    cy.get(circle).first().as("firstElement");
     cy.get("@firstElement").contains("19");
     cy.get("@firstElement").contains("top");
     cy.get("@firstElement").contains("tail");
@@ -24,7 +26,7 @@ describe("страница с очередью работает корректн
     cy.get("input").type("12");
     cy.get("button").contains("Добавить").click();
 
-    cy.get("[class*=circle_content]")
+    cy.get(circle)
       .should("have.length", 7)
       .each(($el, index) => {
         if (index === 0) {
@@ -44,7 +46,7 @@ describe("страница с очередью работает корректн
     cy.get("input").type("19");
     cy.get("button").contains("Добавить").click();
 
-    cy.get("[class*=circle_content]").first().as("firstElement");
+    cy.get(circle).first().as("firstElement");
     cy.get("@firstElement").contains("19");
     cy.get("@firstElement").contains("top");
     cy.get("@firstElement").contains("tail");
@@ -52,7 +54,7 @@ describe("страница с очередью работает корректн
     cy.get("input").type("12");
     cy.get("button").contains("Добавить").click();
 
-    cy.get("[class*=circle_content]")
+    cy.get(circle)
       .should("have.length", 7)
       .each(($el, index) => {
         if (index === 0) {
@@ -68,7 +70,7 @@ describe("страница с очередью работает корректн
     cy.get("button").contains("Удалить").click();
     cy.get("@firstElement").children("[class*=circle_changing]");
     cy.get("@firstElement").children("[class*=circle_default]");
-    cy.get("[class*=circle_content]")
+    cy.get(circle)
       .should("have.length", 7)
       .each(($el, index) => {
         if (index === 1) {
@@ -84,7 +86,7 @@ describe("страница с очередью работает корректн
     cy.get("input").type("19");
     cy.get("button").contains("Добавить").click();
 
-    cy.get("[class*=circle_content]").first().as("firstElement");
+    cy.get(circle).first().as("firstElement");
     cy.get("@firstElement").contains("19");
     cy.get("@firstElement").contains("top");
     cy.get("@firstElement").contains("tail");
@@ -92,7 +94,7 @@ describe("страница с очередью работает корректн
     cy.get("input").type("12");
     cy.get("button").contains("Добавить").click();
 
-    cy.get("[class*=circle_content]")
+    cy.get(circle)
       .should("have.length", 7)
       .each(($el, index) => {
         if (index === 0) {
@@ -106,7 +108,7 @@ describe("страница с очередью работает корректн
       });
 
     cy.get("button").contains("Очистить").click();
-    cy.get("[class*=circle_content]")
+    cy.get(circle)
       .should("have.length", 7)
       .each(($el, index) => {
           cy.wrap($el)

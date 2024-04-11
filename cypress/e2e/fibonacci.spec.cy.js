@@ -1,6 +1,8 @@
+import { circle } from "./constants";
+
 describe("страница с алгоритмом фибоначчи работает корректно", function () {
   beforeEach(function () {
-    cy.visit("http://localhost:3000/fibonacci");
+    cy.visit("/fibonacci");
   });
   it("копка добавления недоступна при пустом инпуте", function () {
     if (cy.get("input").and("have.value", "")) {
@@ -12,9 +14,9 @@ describe("страница с алгоритмом фибоначчи работ
     cy.get("input").type("3");
     cy.get("button").contains("Развернуть").click();
 
-    cy.get("[class*=circle_content]").first().as("firstElement");
-    cy.get("[class*=circle_content]").eq(1).as("secondElement");
-    cy.get("[class*=circle_content]").last().as("thirdElement");
+    cy.get(circle).first().as("firstElement");
+    cy.get(circle).eq(1).as("secondElement");
+    cy.get(circle).last().as("thirdElement");
     cy.get("@firstElement").contains("1");
     cy.get("@secondElement").contains("1");
     cy.get("@thirdElement").contains("2");

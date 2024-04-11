@@ -1,6 +1,8 @@
+import { circle } from "./constants";
+
 describe("страница с алгоритмом строки работает корректно", function () {
   beforeEach(function () {
-    cy.visit("http://localhost:3000/recursion");
+    cy.visit("/recursion");
   });
   it("копка добавления недоступна при пустом инпуте", function () {
     if (cy.get("input").and("have.value", "")) {
@@ -12,9 +14,9 @@ describe("страница с алгоритмом строки работает
     cy.get('input').type('heo');
     cy.get('button').contains('Развернуть').click();
 
-    cy.get('[class*=circle_content]').first().as('firstElement');
-    cy.get('[class*=circle_content]').eq(1).as('secondElement');
-    cy.get('[class*=circle_content]').last().as('thirdElement');
+    cy.get(circle).first().as('firstElement');
+    cy.get(circle).eq(1).as('secondElement');
+    cy.get(circle).last().as('thirdElement');
     cy.get('@firstElement').contains('h');
     cy.get('@secondElement').contains('e');
     cy.get('@thirdElement').contains('o');

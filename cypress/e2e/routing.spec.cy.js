@@ -1,6 +1,6 @@
 describe('роутинг в приложении работает корректно', function() {
     beforeEach(function() {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
     });
   
 /*     it('открывает главную при клике к оглавлению', function() {
