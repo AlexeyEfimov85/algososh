@@ -1,0 +1,1 @@
+export const circle = 'div[class*=circle_content]';
